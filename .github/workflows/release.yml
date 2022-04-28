@@ -28,3 +28,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PROJECT_NAME: "mkvtool"
+
+      - name: Dist
+        uses: actions/upload-artifact@v2
+        with:
+          name: dist
+          path: dist/
