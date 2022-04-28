@@ -419,7 +419,7 @@ func (self *assProcessor) matchFonts() bool {
 			}
 		}
 	}
-	w(false)
+	// w(false)
 	// w(true)
 	ok := true
 	for k, _ := range self.m {
