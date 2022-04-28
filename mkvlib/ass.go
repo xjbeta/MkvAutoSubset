@@ -140,15 +140,15 @@ func (self *assProcessor) parse() bool {
 							name = name[1:]
 						}
 						arr := make([]string, 0)
-						// if _b {
-						// 	arr = append(arr, "Bold")
-						// }
-						// if _i {
-						// 	arr = append(arr, "Italic")
-						// }
-						// if !_b && !_i {
-						// 	arr = append(arr, "Regular")
-						// }
+						if _b {
+							arr = append(arr, "Bold")
+						}
+						if _i {
+							arr = append(arr, "Italic")
+						}
+						if !_b && !_i {
+							arr = append(arr, "Regular")
+						}
 						_name := fmt.Sprintf("%s^%s", name, strings.Join(arr, " "))
 						if m[_name] == nil {
 							m[_name] = make(map[rune]bool)
