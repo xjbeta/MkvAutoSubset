@@ -333,7 +333,7 @@ func (self *assProcessor) createFontSubset(font *fontInfo) bool {
 		return false
 	}
 	if os.WriteFile(fn, []byte(font.str), os.ModePerm) == nil {
-		_fn := fmt.Sprintf("%s.%s%s", ne, font.newName, e)
+		_fn := fmt.Sprintf("%s.%s%s", ne, font.oldName, e)
 		_fn = path.Join(self.output, _fn)
 		args := make([]string, 0)
 		args = append(args, "--text-file="+fn)
@@ -384,6 +384,7 @@ func (self *assProcessor) createFontsSubset() bool {
 }
 
 func (self *assProcessor) changeFontName(font *fontInfo) bool {
+	return true
 	if self.tDir == "" {
 		self.tDir = path.Join(os.TempDir(), randomStr(8))
 		if os.MkdirAll(self.tDir, os.ModePerm) != nil {
@@ -489,6 +490,7 @@ func (self *assProcessor) replaceFontNameInAss() bool {
 				r := fmt.Sprintf("${1}${2}%s${3}", v.newName)
 				s = reg.ReplaceAllString(s, r)
 				m[f][v.oldName] = true
+				break
 				self.subtitles[f] = s
 			}
 		}
@@ -498,7 +500,7 @@ func (self *assProcessor) replaceFontNameInAss() bool {
 		comments = append(comments, "[Script Info]")
 		comments = append(comments, "; ----- Font subset begin -----")
 		for k, _ := range m[f] {
-			comments = append(comments, fmt.Sprintf("; Font subset: %s - %s", self.m[k].newName, k))
+			comments = append(comments, fmt.Sprintf("; Font subset: %s - %s", k, k))
 		}
 		if len(comments) > 2 {
 			comments = append(comments, "")
