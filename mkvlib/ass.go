@@ -420,7 +420,7 @@ func (self *assProcessor) matchFonts() bool {
 		}
 	}
 	w(false)
-	w(true)
+	// w(true)
 	ok := true
 	for k, _ := range self.m {
 		if self.m[k].file == "" {
