@@ -317,7 +317,7 @@ func (self *mkvProcessor) ASSFontSubset(files []string, fonts, output string, di
 	}
 	obj.fonts = findFonts(obj._fonts)
 	obj.loadCache(self.cache)
-	r := obj.parse() && obj.matchFonts() && obj.createFontsSubset() && obj.changeFontsName() && obj.replaceFontNameInAss()
+	r := obj.parse() && obj.matchFonts() && obj.createFontsSubset()
 	if r && self.a2p {
 		r = self.ass2Pgs(obj._files, self.pr, self.pf, obj.output, d, lcb)
 		if r && !self.apc {
